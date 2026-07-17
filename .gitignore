@@ -3,3 +3,6 @@
 
 # Claude Code local config
 .claude/
+
+# Claudflare worker
+worker.js
