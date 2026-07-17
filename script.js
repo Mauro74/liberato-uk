@@ -1,3 +1,4 @@
+
 document.addEventListener('DOMContentLoaded', () => {
   if (typeof lucide !== 'undefined') {
     lucide.createIcons();
@@ -43,7 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // ── SCROLL REVEAL ──
+  // â”€â”€ SCROLL REVEAL â”€â”€
   const revealEls = document.querySelectorAll('.reveal, .reveal-right');
   const revealObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -56,7 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   revealEls.forEach(el => revealObserver.observe(el));
 
-  // ── DARK MODE TOGGLE ──
+  // â”€â”€ DARK MODE TOGGLE â”€â”€
   const themeToggle = document.querySelector('.theme-toggle');
   const storedTheme = localStorage.getItem('theme');
   const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
@@ -78,7 +79,7 @@ document.addEventListener('DOMContentLoaded', () => {
     localStorage.setItem('theme', next);
   });
 
-  // ── CONTACT FORM ──
+  // â”€â”€ CONTACT FORM â”€â”€
   const contactForm = document.getElementById('contact-form');
   const formStatus = document.getElementById('form-status');
   const submitBtn = contactForm.querySelector('.form-submit');
