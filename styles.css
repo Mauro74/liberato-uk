@@ -69,7 +69,11 @@ nav {
   align-items: center;
   justify-content: space-between;
   height: 64px;
-  padding: 0 2rem;
+  padding: 0;
+}
+
+@media screen and (max-width: 1200px) {
+  .nav-inner {padding: 0 2rem;}
 }
 
 .nav-logo {
@@ -318,11 +322,14 @@ section { padding: 7rem 2rem; }
 
 /* ── 1. HERO ── */
 #hero {
-  min-height: 100vh;
+  min-height: 70vh;
   display: flex;
   align-items: center;
-  padding-top: 64px;
+  padding: 7rem 2rem 1.7rem;
+  padding-top: 155px;
   background: var(--dominant);
+  position: relative;
+  overflow: hidden;
 }
 
 .hero-layout {
@@ -358,62 +365,54 @@ section { padding: 7rem 2rem; }
   justify-content: flex-end;
 }
 
-.hero-block {
-  width: 420px;
-  background: var(--secondary);
-  border-radius: 16px;
-  padding: 2.5rem;
-  color: var(--dominant);
-  position: relative;
-  overflow: hidden;
-}
-
-.hero-block::before {
-  content: '';
+.hero-portrait-wrap {
   position: absolute;
-  top: -60px;
-  right: -60px;
-  width: 160px;
-  height: 160px;
-  border-radius: 50%;
-  background: var(--accent);
-  opacity: 0.15;
+  bottom: -20px;
+  right: max(2rem, calc((105% - 1120px) / 2));
+  /* width: 33%; */
 }
 
-.hero-block .mono { color: var(--accent); margin-bottom: 2rem; }
+.hero-portrait {
+  display: block;
+  width: 100%;
+  max-height: 660px;
+  height: auto;
+}
 
-.hero-stat-row {
+/* skill tags — horizontal row under the hero actions */
+.hero-tags {
   display: flex;
-  gap: 2rem;
-  margin-bottom: 2rem;
-}
-
-.hero-stat h3 {
-  font-size: 2rem;
-  font-weight: 700;
-  letter-spacing: -1px;
-}
-
-.hero-stat span {
-  font-size: 0.8rem;
-  color: var(--grey-400);
-  font-weight: 400;
-}
-
-.hero-stack {
-  display: flex;
-  gap: 0.5rem;
   flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 2rem;
 }
 
-.hero-stack span {
-  background: rgba(244, 244, 246, 0.08);
-  border: 1px solid rgba(244, 244, 246, 0.12);
-  padding: 0.35rem 0.8rem;
-  border-radius: 4px;
+.hero-tag {
+  background: #1A1D20;
+  color: var(--accent);
   font-family: 'JetBrains Mono', monospace;
-  font-size: 0.75rem;
-  color: var(--grey-300);
+  font-size: 0.86rem;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+  padding: 0.48rem 0.9rem;
+  border-radius: 6px;
+  white-space: nowrap;
+  border: 1px solid rgba(223, 41, 53, 0.3);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
+  pointer-events: none;
+  opacity: 0;
+  animation: tagIn 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: var(--d);
+}
+
+@keyframes tagIn {
+  0%   { opacity: 0; transform: translateX(-105vw); }
+  30%  { opacity: 1; }
+  100% { opacity: 1; transform: translateX(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-tag { animation: none; opacity: 1; }
 }
 
 /* ── 2. SERVICES ── */
