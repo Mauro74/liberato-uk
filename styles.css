@@ -530,6 +530,19 @@ section { padding: 7rem 2rem; }
   color: var(--grey-500);
 }
 
+/* tier description — same body copy as the section intro (.subtext) */
+.pricing-desc {
+  font-size: 1.05rem;
+  font-weight: 300;
+  line-height: 1.7;
+  color: var(--grey-500);
+  margin-bottom: 1.75rem;
+}
+
+/* a card with a description keeps an even price → description → bullets rhythm;
+   cards without one (Care Plan) keep their bullets bottom-pinned via the auto below */
+.pricing-card:has(.pricing-desc) .pricing-list { margin-top: 0; }
+
 .pricing-list {
   list-style: none;
   display: flex;
