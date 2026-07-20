@@ -470,6 +470,187 @@ section { padding: 7rem 2rem; }
   font-weight: 300;
 }
 
+/* ── 3. PRICING ── */
+#pricing { background: var(--dominant); }
+
+.pricing-header { margin-bottom: 4rem; }
+
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--grey-200);
+  border: 1px solid var(--grey-200);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.pricing-card {
+  background: var(--surface);
+  padding: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  transition: background 0.3s;
+}
+
+.pricing-card:hover {
+  background: var(--dominant);
+}
+
+.pricing-card h3 {
+  font-size: 1.15rem;
+  font-weight: 600;
+  letter-spacing: -0.3px;
+  margin-bottom: 0.75rem;
+}
+
+.pricing-price {
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: -1px;
+  color: var(--secondary);
+  margin-bottom: 1.75rem;
+}
+
+.pricing-from {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--grey-500);
+  margin-right: 0.5rem;
+  vertical-align: middle;
+}
+
+.pricing-period {
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: var(--grey-500);
+}
+
+.pricing-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: auto;
+}
+
+.pricing-list li {
+  position: relative;
+  padding-left: 1.5rem;
+  font-size: 0.9rem;
+  font-weight: 300;
+  line-height: 1.5;
+  color: var(--grey-500);
+}
+
+.pricing-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.5em;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* comparison block — secondary to the pricing cards */
+.pricing-compare {
+  margin-top: 3rem;
+  /* full container width so the table aligns with the pricing cards grid above */
+}
+
+.compare-heading {
+  font-size: 1.15rem;
+  font-weight: 600;
+  letter-spacing: -0.3px;
+  color: var(--secondary);
+  margin-bottom: 0.75rem;
+}
+
+.compare-intro {
+  font-size: 0.9rem;
+  font-weight: 300;
+  line-height: 1.7;
+  color: var(--grey-500);
+  margin-bottom: 1.75rem;
+  max-width: 680px;
+}
+
+.compare-table {
+  background: var(--surface);
+  border: 1px solid var(--grey-200);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.compare-row {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr 1.5fr;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1rem 1.5rem;
+  border-top: 1px solid var(--grey-200);
+}
+
+.compare-row:first-child { border-top: none; }
+
+.compare-label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: -0.2px;
+  color: var(--secondary);
+}
+
+.compare-price {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85rem;
+  font-weight: 500;
+  line-height: 1.45;
+  color: var(--grey-500);
+}
+
+.compare-desc {
+  font-size: 0.82rem;
+  font-weight: 300;
+  line-height: 1.5;
+  color: var(--grey-500);
+}
+
+.compare-row--highlight {
+  background: rgba(223, 41, 53, 0.07);
+  box-shadow: inset 3px 0 0 var(--accent);
+}
+
+.compare-row--highlight .compare-label { color: var(--accent); }
+
+.compare-row--highlight .compare-price {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.compare-note {
+  margin-top: 1rem;
+  max-width: 720px;
+  font-size: 0.8rem;
+  font-weight: 300;
+  line-height: 1.6;
+  color: var(--grey-500);
+}
+
+@media (max-width: 640px) {
+  /* stack each row as a small card so four rows don't get cramped */
+  .compare-row {
+    grid-template-columns: 1fr;
+    gap: 0.35rem;
+    padding: 1rem 1.25rem;
+  }
+  .compare-desc { grid-column: auto; }
+}
+
 /* ── COMPANIES TICKER ── */
 #companies {
   background: var(--secondary);
@@ -975,7 +1156,8 @@ footer {
   .hero-visual { display: none; }
   .hero-text h1 { font-size: 3rem; }
   .work-header { flex-direction: column; align-items: flex-start; gap: 1.5rem; }
-  .services-grid { grid-template-columns: 1fr; }
+  .services-grid,
+  .pricing-grid { grid-template-columns: 1fr; }
   .work-item { grid-template-columns: 1fr 2fr auto; }
 }
 

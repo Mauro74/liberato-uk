@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
         revealObserver.unobserve(entry.target);
       }
     });
-  }, { threshold: 0.8 });
+  }, { threshold: 0.4 });
 
   revealEls.forEach(el => revealObserver.observe(el));
 
