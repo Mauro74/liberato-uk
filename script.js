@@ -80,7 +80,10 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // â”€â”€ CONTACT FORM â”€â”€
+  // only present on the homepage — case study pages share this script
   const contactForm = document.getElementById('contact-form');
+  if (!contactForm) return;
+
   const formStatus = document.getElementById('form-status');
   const submitBtn = contactForm.querySelector('.form-submit');
 
