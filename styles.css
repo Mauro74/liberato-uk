@@ -752,7 +752,9 @@ section { padding: 7rem 2rem; }
 
 .work-card {
   display: grid;
-  grid-template-columns: 1.15fr 1fr;
+  /* 50/50 columns so the thumbnail renders at the same width whether it sits
+     on the left (odd cards) or the right (even cards, flipped via order) */
+  grid-template-columns: 1fr 1fr;
   gap: 3.5rem;
   align-items: center;
 }
@@ -768,19 +770,6 @@ section { padding: 7rem 2rem; }
   height: auto;
   border-radius: 12px;
   border: 1px solid var(--grey-200);
-}
-
-/* the "before" peeking out from behind the "after" */
-.work-card-inset {
-  position: absolute;
-  bottom: -1.25rem;
-  left: -1.25rem;
-  width: 26%;
-  height: auto;
-  border-radius: 6px;
-  border: 1px solid var(--grey-300);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
-  background: var(--surface);
 }
 
 .work-card-tag {
@@ -1041,12 +1030,30 @@ section { padding: 7rem 2rem; }
 .case-hero {
   background: var(--surface);
   border-bottom: 1px solid var(--grey-200);
-  padding-top: 10rem;
-  padding-bottom: 4.5rem;
+  /* interior page — clears the 64px fixed nav with a small buffer, no vh sizing.
+     height is content-driven so the visual story sits high on the page */
+  padding-top: 6.4rem;
+  padding-bottom: 2.5rem;
+}
+
+/* two-column hero — same 1fr 1fr rhythm as the homepage hero */
+.case-hero-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: start;
+}
+
+/* the back link sits full-width above the grid, so both columns top-align:
+   the "// The brief" label lands level with the status tag */
+.case-hero-aside {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 }
 
 .case-back {
-  /* flex (not inline-flex) so it holds its own line above the status tag */
+  /* first line of the left column — top-aligns with the "// The brief" label */
   display: flex;
   width: fit-content;
   align-items: center;
@@ -1058,19 +1065,20 @@ section { padding: 7rem 2rem; }
   text-transform: uppercase;
   color: var(--grey-500);
   text-decoration: none;
-  margin-bottom: 2.5rem;
+  margin-bottom: 1rem;
   transition: color 0.2s;
 }
 
 .case-back:hover { color: var(--accent); }
 
 .case-title {
-  font-size: 3.25rem;
+  /* interior-page scale — ~60% of the old hero-sized heading */
+  font-size: 2rem;
   font-weight: 700;
-  letter-spacing: -2px;
-  line-height: 1.05;
+  letter-spacing: -1px;
+  line-height: 1.1;
   color: var(--secondary);
-  margin-bottom: 1.25rem;
+  margin-bottom: 1rem;
 }
 
 .case-summary {
@@ -1079,7 +1087,7 @@ section { padding: 7rem 2rem; }
   color: var(--grey-500);
   line-height: 1.7;
   max-width: 620px;
-  margin-bottom: 2.25rem;
+  margin-bottom: 1.5rem;
 }
 
 .case-meta {
@@ -1156,6 +1164,16 @@ a.case-status:hover { background: rgba(223, 41, 53, 0.08); }
   background: var(--surface);
   border-top: 1px solid var(--grey-200);
   border-bottom: 1px solid var(--grey-200);
+  /* tighter gap up to the hero so the first screenshot sits above the fold */
+  padding-top: 2rem;
+}
+
+/* interior-scale section heading — ~half the homepage .heading, tight below,
+   handing the reclaimed space to the before/after screenshots */
+#case-visuals .heading {
+  font-size: 1.4rem;
+  letter-spacing: -0.3px;
+  margin-bottom: 1.25rem;
 }
 
 .case-shots {
@@ -1210,33 +1228,23 @@ a.case-status:hover { background: rgba(223, 41, 53, 0.08); }
   margin-top: 1.1rem;
 }
 
-/* ── case study: what I did ── */
-.case-did-list {
+/* ── case study: what I did — small pills, same language as the service tags ── */
+.case-did-tags {
   list-style: none;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 0.9rem 2.5rem;
-  max-width: 760px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
 }
 
-.case-did-list li {
-  position: relative;
-  padding-left: 1.5rem;
-  font-size: 0.95rem;
-  font-weight: 300;
-  line-height: 1.6;
-  color: var(--grey-500);
-}
-
-.case-did-list li::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0.55em;
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--accent);
+.case-did-tags li {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+  color: var(--accent);
+  border: 1px solid var(--accent);
+  border-radius: 6px;
+  padding: 0.35rem 0.7rem;
 }
 
 /* ── case study: CTA ── */
@@ -1479,9 +1487,10 @@ footer {
   .work-card:nth-child(even) .work-card-visual { order: 0; }
   .work-list { gap: 4rem; }
 
-  .case-title { font-size: 2.5rem; letter-spacing: -1.5px; }
   .case-directions { grid-template-columns: 1fr; gap: 3.5rem; }
-  .case-did-list { grid-template-columns: 1fr; }
+
+  /* hero stacks: back, status, heading, summary, tags, brief, what-I-did */
+  .case-hero-grid { grid-template-columns: 1fr; gap: 2.5rem; }
 }
 
 @media (max-width: 640px) {
@@ -1491,13 +1500,11 @@ footer {
   .hero-text h1 { font-size: 2.25rem; letter-spacing: -1.5px; }
   .heading { font-size: 2rem; }
 
-  /* keep the inset inside the frame — no room to overhang at this width */
-  .work-card-inset { bottom: 0.75rem; left: 0.75rem; width: 30%; }
   .work-card-title { font-size: 1.5rem; }
 
-  .case-hero { padding-top: 8rem; padding-bottom: 3rem; }
+  .case-hero { padding-top: 4.5rem; padding-bottom: 2rem; }
   .case-section { padding: 4rem 1.25rem; }
-  .case-title { font-size: 2rem; letter-spacing: -1px; }
+  .case-title { font-size: 1.65rem; letter-spacing: -0.5px; }
   .case-cta { padding: 3rem 1.5rem; }
   .case-cta h2 { font-size: 1.6rem; }
   .case-nav-grid { grid-template-columns: 1fr; }
