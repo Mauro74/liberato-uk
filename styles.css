@@ -2,6 +2,8 @@
 :root {
   --dominant: #F4F4F6;
   --secondary: #1A1D20;
+  /* one step lighter than --secondary — lifts the ticker band off the #about block */
+  --secondary-alt: #22252a;
   --accent: #DF2935;
   --grey-200: #E8E8EB;
   --grey-300: #D1D1D6;
@@ -10,6 +12,8 @@
   --surface: #FFFFFF;
   /* second surface tone for alternating section rhythm — ~2.4% darker than --surface */
   --surface-alt: #F8F8FA;
+  /* deepest light tone — sits a section apart from both --surface and --surface-alt */
+  --surface-deep: #ECECF0;
   --nav-bg: rgba(244, 244, 246, 0.65);
   --success-bg: #f0fdf4;
   --success-border: #bbf7d0;
@@ -21,6 +25,8 @@
 [data-theme="dark"] {
   --dominant: #1A1D20;
   --secondary: #F4F4F6;
+  /* dark theme keeps the ticker band on --secondary */
+  --secondary-alt: #F4F4F6;
   --grey-200: #2a2d32;
   --grey-300: #3a3d44;
   --grey-400: #8a8a94;
@@ -28,6 +34,8 @@
   --surface: #22252a;
   /* second surface tone for alternating section rhythm — ~4.5% lighter than --surface */
   --surface-alt: #2c3037;
+  /* dark theme keeps work on the base surface — matches --surface */
+  --surface-deep: #22252a;
   --nav-bg: rgba(26, 29, 32, 0.8);
   --success-bg: #0a2618;
   --success-border: #166534;
@@ -671,7 +679,7 @@ section { padding: 7rem 2rem; }
 
 /* ── COMPANIES TICKER ── */
 #companies {
-  background: var(--secondary);
+  background: var(--secondary-alt);
   padding: 3rem 0;
   overflow: hidden;
 }
@@ -704,12 +712,12 @@ section { padding: 7rem 2rem; }
 
 .ticker-wrap::before {
   left: 0;
-  background: linear-gradient(to right, var(--secondary), transparent);
+  background: linear-gradient(to right, var(--secondary-alt), transparent);
 }
 
 .ticker-wrap::after {
   right: 0;
-  background: linear-gradient(to left, var(--secondary), transparent);
+  background: linear-gradient(to left, var(--secondary-alt), transparent);
 }
 
 @keyframes ticker-scroll {
@@ -755,7 +763,7 @@ section { padding: 7rem 2rem; }
 
 /* ── 3. WORK ── */
 #work {
-  background: var(--surface);
+  background: var(--surface-deep);
   border-bottom: 1px solid var(--grey-200);
 }
 
@@ -786,7 +794,7 @@ section { padding: 7rem 2rem; }
   width: 100%;
   height: auto;
   border-radius: 12px;
-  border: 1px solid var(--grey-200);
+  border: 1px solid var(--grey-300);
 }
 
 .work-card-tag {
@@ -956,6 +964,9 @@ section { padding: 7rem 2rem; }
   height: 40px;
   border-radius: 8px;
   background: var(--dominant);
+  /* accent stroke so the icons read as brand marks, not neutral glyphs.
+     set here (not inherited) so they hold their colour on link hover too */
+  color: var(--accent);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1432,7 +1443,8 @@ footer {
   border-radius: 50%;
   border: 1.5px solid var(--grey-300);
   background: var(--surface);
-  color: var(--secondary);
+  /* sun/moon carry the accent, matching the contact icons */
+  color: var(--accent);
   cursor: pointer;
   display: flex;
   align-items: center;
