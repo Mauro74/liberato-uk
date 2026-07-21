@@ -8,6 +8,8 @@
   --grey-400: #A0A0A8;
   --grey-500: #6E6E78;
   --surface: #FFFFFF;
+  /* second surface tone for alternating section rhythm — ~2.4% darker than --surface */
+  --surface-alt: #F8F8FA;
   --nav-bg: rgba(244, 244, 246, 0.65);
   --success-bg: #f0fdf4;
   --success-border: #bbf7d0;
@@ -24,6 +26,8 @@
   --grey-400: #8a8a94;
   --grey-500: #a0a0aa;
   --surface: #22252a;
+  /* second surface tone for alternating section rhythm — ~4.5% lighter than --surface */
+  --surface-alt: #2c3037;
   --nav-bg: rgba(26, 29, 32, 0.8);
   --success-bg: #0a2618;
   --success-border: #166534;
@@ -422,7 +426,7 @@ section { padding: 7rem 2rem; }
 
 /* ── 2. SERVICES ── */
 #services {
-  background: var(--surface);
+  background: var(--surface-alt);
   border-top: 1px solid var(--grey-200);
   border-bottom: 1px solid var(--grey-200);
 }
@@ -472,7 +476,7 @@ section { padding: 7rem 2rem; }
 }
 
 /* ── 4. PRICING ── */
-#pricing { background: var(--dominant); }
+#pricing { background: var(--surface-alt); }
 
 .pricing-header { margin-bottom: 4rem; }
 
@@ -841,7 +845,7 @@ section { padding: 7rem 2rem; }
 }
 
 [data-theme="dark"] #about {
-  background: var(--surface);
+  background: var(--surface-alt);
   color: var(--secondary);
 }
 
