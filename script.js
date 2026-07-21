@@ -9,10 +9,16 @@ document.addEventListener('DOMContentLoaded', () => {
   const mobileOverlay = document.querySelector('.mobile-overlay');
   const mobileLinks = document.querySelectorAll('.mobile-menu-links a, .mobile-menu-cta a');
 
+  // body is pinned with position:fixed while the menu is open (see .menu-open in
+  // styles.css), which drops the page to the top — so hold the offset and put it back
+  let lockedScrollY = 0;
+
   function openMenu() {
+    lockedScrollY = window.scrollY;
     hamburger.classList.add('active');
     mobileMenu.classList.add('active');
     mobileOverlay.classList.add('active');
+    document.body.style.top = `-${lockedScrollY}px`;
     document.body.classList.add('menu-open');
   }
 
@@ -21,6 +27,9 @@ document.addEventListener('DOMContentLoaded', () => {
     mobileMenu.classList.remove('active');
     mobileOverlay.classList.remove('active');
     document.body.classList.remove('menu-open');
+    document.body.style.top = '';
+    // html has scroll-behavior:smooth, which would animate the restore — jump instead
+    window.scrollTo({ top: lockedScrollY, behavior: 'instant' });
   }
 
   function toggleMenu() {

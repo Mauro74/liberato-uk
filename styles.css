@@ -195,7 +195,10 @@ header nav {
   right: 0;
   width: 300px;
   max-width: 85vw;
+  /* dvh tracks the visible viewport as mobile browser chrome collapses on scroll;
+     plain vh is frozen at one of the two extremes and leaves a gap at the bottom */
   height: 100vh;
+  height: 100dvh;
   background: var(--dominant);
   z-index: 200;
   transform: translateX(100%);
@@ -203,17 +206,45 @@ header nav {
   display: flex;
   flex-direction: column;
   border-left: 1px solid var(--grey-200);
+  /* crops the halftone at the panel edge instead of letting it spill onto the page */
+  overflow: hidden;
 }
 
 .mobile-menu.active {
   transform: translateX(0);
 }
 
+/* halftone portrait bleeding off the bottom-right of the panel — the box is taller
+   than the space left for it, so the lower part of the portrait is cropped away.
+   Not scoped to .active: the panel slides off-screen when closed, and keeping the
+   image attached means it travels with the slide-out instead of blinking away. */
+.mobile-menu::after {
+  content: '';
+  position: absolute;
+  left: 60px;
+  right: 0;
+  bottom: -130px;
+  aspect-ratio: 455 / 615;
+  background-image: url(assets/maurizio-halftone.png);
+  background-size: 100% 100%;
+  background-position: left top;
+  background-repeat: no-repeat;
+  pointer-events: none;
+  width: 300px;
+}
+
 .mobile-menu-inner {
   display: flex;
   flex-direction: column;
-  padding: 6rem 2rem 2rem;
+  padding: 2rem;
   flex: 1;
+  /* keeps links and CTA above the halftone, which ::after would otherwise paint over */
+  position: relative;
+  z-index: 1;
+  /* the panel now clips, so short screens (landscape phones) need the links to
+     scroll rather than be cut off; min-height:0 lets the flex item shrink to allow it */
+  min-height: 0;
+  overflow-y: auto;
 }
 
 .mobile-menu-links {
@@ -252,7 +283,15 @@ header nav {
 }
 
 /* ── BODY SCROLL LOCK ── */
+/* overflow:hidden alone is ignored by iOS Safari, so the page kept scrolling behind the
+   open menu. That scrolling is what collapses/expands the browser chrome, resizing the
+   viewport out from under the fixed panel and leaving it short of the bottom edge.
+   Pinning body stops the scroll outright; script.js offsets `top` to hold the position. */
 body.menu-open {
+  position: fixed;
+  left: 0;
+  right: 0;
+  width: 100%;
   overflow: hidden;
 }
 
@@ -396,6 +435,24 @@ section { padding: 7rem 2rem; }
   height: auto;
 }
 
+/* Enters from off the right edge, half a second late so it lands after the hero copy.
+   Driven by keyframes rather than .reveal-right (same approach as .hero-tag below):
+   that reveal needs 40% of the element inside the viewport before the observer adds
+   .visible, which an element parked outside the viewport can never satisfy.
+   The start offset is the image's own width plus however far the wrap is inset from the
+   edge — that inset mirrors `right: max(2rem, (105% - 1120px) / 2)` above, with the 105%
+   of the hero rewritten as 52.5vw, since a percentage inside translateX() would resolve
+   against the image instead. #hero clips, so the offset adds no page scroll. */
+.hero-portrait {
+  opacity: 0;
+  animation: portraitIn 0.6s ease 0.5s both;
+}
+
+@keyframes portraitIn {
+  from { opacity: 0; transform: translateX(calc(100% + max(2rem, 52.5vw - 560px))); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
 /* skill tags — horizontal row under the hero actions */
 .hero-tags {
   display: flex;
@@ -430,6 +487,8 @@ section { padding: 7rem 2rem; }
 
 @media (prefers-reduced-motion: reduce) {
   .hero-tag { animation: none; opacity: 1; }
+  /* opacity must come back too — the base rule zeroes it for the animation to fill */
+  .hero-portrait { animation: none; opacity: 1; }
 }
 
 /* ── 2. SERVICES ── */
@@ -844,6 +903,11 @@ section { padding: 7rem 2rem; }
 #about {
   background: var(--secondary);
   color: var(--dominant);
+  /* the .metric cards sit at translateX(60px) until the observer reveals them, and that
+     transform extends the page's scrollable area — the source of the horizontal scroll on
+     mobile. The section spans the full viewport, so clipping here matches the viewport
+     edge and the slide-in looks unchanged. #hero already does the same for its portrait. */
+  overflow-x: clip;
 }
 
 #about .mono { color: var(--accent); }
@@ -901,7 +965,10 @@ section { padding: 7rem 2rem; }
   padding-left: 1.25rem;
 }
 
-.metric h3 {
+/* the number is a <p>, not a heading — these stats aren't section titles and were
+   padding the H3 outline. font-weight is set explicitly here because <p> doesn't carry
+   the bold an <h3> defaulted to. */
+.metric p {
   font-size: 2.25rem;
   font-weight: 700;
   letter-spacing: -1px;
@@ -1437,7 +1504,9 @@ footer {
   position: fixed;
   bottom: 2rem;
   right: 2rem;
-  z-index: 300;
+  /* below the mobile menu (200) and its overlay (199) — at 300 it floated on top of the
+     open panel; still above the nav (100) everywhere else */
+  z-index: 198;
   width: 48px;
   height: 48px;
   border-radius: 50%;
