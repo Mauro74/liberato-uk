@@ -75,7 +75,7 @@ header nav {
   z-index: 100;
   background: var(--nav-bg);
   backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--grey-200);
 }
 
@@ -1117,6 +1117,10 @@ section { padding: 7rem 2rem; }
 #contact {
   background: var(--surface);
   border-top: 1px solid var(--grey-200);
+}
+
+[data-theme="dark"] #contact {
+  background: var(--surface-alt);
 }
 
 .contact-layout {
