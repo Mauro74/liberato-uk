@@ -992,6 +992,127 @@ section { padding: 7rem 2rem; }
   color: var(--secondary);
 }
 
+/* ── FAQ ── */
+/* deliberately lighter than the pricing table above it: plain surface, a narrow reading
+   measure, and hairline dividers instead of cards — closer to the About section's calm. */
+#faq {
+  background: var(--surface);
+}
+
+.faq-header { margin-bottom: 4rem; }
+
+.faq-list {
+  max-width: 760px;
+}
+
+.faq-item {
+  border-bottom: 1px solid var(--grey-200);
+}
+
+.faq-item:first-child {
+  border-top: 1px solid var(--grey-200);
+}
+
+/* the h3 carries no visual weight of its own — the button inside is the control */
+.faq-question {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 500;
+  letter-spacing: -0.2px;
+}
+
+.faq-trigger {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding: 1.5rem 0;
+  background: none;
+  border: none;
+  font: inherit;
+  font-weight: 500;
+  color: var(--secondary);
+  text-align: left;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.faq-trigger:hover { color: var(--accent); }
+
+.faq-trigger:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+
+/* plus icon drawn from two bars; the vertical bar collapses to a minus when open */
+.faq-icon {
+  position: relative;
+  flex-shrink: 0;
+  width: 14px;
+  height: 14px;
+}
+
+.faq-icon::before,
+.faq-icon::after {
+  content: '';
+  position: absolute;
+  background: var(--accent);
+  transition: transform 0.3s ease;
+}
+
+.faq-icon::before {
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 2px;
+  transform: translateY(-50%);
+}
+
+.faq-icon::after {
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  transform: translateX(-50%);
+}
+
+.faq-item.is-open .faq-icon::after {
+  transform: translateX(-50%) scaleY(0);
+}
+
+/* grid-template-rows 0fr→1fr animates height without a fixed max-height guess;
+   the inner wrapper's overflow:hidden clips the answer while collapsed */
+.faq-answer {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.3s ease;
+}
+
+.faq-item.is-open .faq-answer {
+  grid-template-rows: 1fr;
+}
+
+.faq-answer-inner {
+  overflow: hidden;
+}
+
+.faq-answer p {
+  font-size: 1rem;
+  font-weight: 300;
+  line-height: 1.8;
+  color: var(--grey-500);
+  max-width: 68ch;
+  padding-bottom: 1.5rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .faq-answer,
+  .faq-icon::before,
+  .faq-icon::after { transition: none; }
+}
+
 /* ── 6. CONTACT ── */
 #contact {
   background: var(--surface);

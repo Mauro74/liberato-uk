@@ -66,6 +66,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
   revealEls.forEach(el => revealObserver.observe(el));
 
+  // FAQ ACCORDION — independent disclosures; the native <button> handles Enter/Space/Tab,
+  // so keyboard access needs no extra key handling — we only toggle state and the panel.
+  document.querySelectorAll('.faq-trigger').forEach((trigger) => {
+    trigger.addEventListener('click', () => {
+      const isOpen = trigger.getAttribute('aria-expanded') === 'true';
+      trigger.setAttribute('aria-expanded', String(!isOpen));
+      trigger.closest('.faq-item').classList.toggle('is-open', !isOpen);
+    });
+  });
+
   // â”€â”€ DARK MODE TOGGLE â”€â”€
   const themeToggle = document.querySelector('.theme-toggle');
   const storedTheme = localStorage.getItem('theme');

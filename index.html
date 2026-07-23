@@ -94,6 +94,48 @@
     }
   </script>
 
+  <!-- FAQ Structured Data -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How much does a website cost in Liverpool?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Most small business websites in Liverpool fall between £350 and £3,500. A simple one-page site starts at £350 with me; a full multi-page business site starts at £1,200. Agencies typically charge £2,000–£5,000+ for similar work because they have office overheads and account managers. Below £1,000 elsewhere you're usually getting a template with your logo dropped on top. I keep prices lower by working solo — no middlemen, no markup."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How long does a website take to build?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A one-page site is usually live in about a week from the point I have your content and images. A full business website takes 2–4 weeks depending on how many pages, whether e-commerce or booking is involved, and how quickly you can get feedback back to me. I'll always give you a realistic timeline before we start — no vague \"sometime next month\" promises."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is there an ongoing cost after the site is built?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Only if you want one. The site itself is a one-off cost — you own it outright and can host it wherever you like. I offer an optional Care Plan from £35/month that covers hosting, security updates, small content edits and priority support, but it's genuinely optional and you can leave anytime."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Why work with a freelancer instead of an agency?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Speed, price, and single point of contact. With an agency you're paying for account managers, project coordinators and office space before any design happens. With me you get a senior developer working directly on your site — the same person who quotes, designs, builds and answers your emails. I've done 15+ years of enterprise agency work; I know exactly what corners agencies cut and which ones actually matter."
+          }
+        }
+      ]
+    }
+  </script>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.min.css">
@@ -112,6 +154,7 @@
         <li><a href="#services">Services</a></li>
         <li><a href="#work">Work</a></li>
         <li><a href="#pricing">Pricing</a></li>
+        <li><a href="#faq">FAQ</a></li>
         <li><a href="#contact">Contact</a></li>
         <li><a href="#contact" class="nav-cta">Start a Project</a></li>
       </ul>
@@ -131,6 +174,7 @@
         <li><a href="#services">Services</a></li>
         <li><a href="#work">Work</a></li>
         <li><a href="#pricing">Pricing</a></li>
+        <li><a href="#faq">FAQ</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
       <div class="mobile-menu-cta">
@@ -400,6 +444,71 @@
           </div>
         </div>
         <p class="compare-note">Every build is a one-off cost — no monthly design fees, no lock-in. The optional Care Plan (£35/month) covers hosting, updates and support, and you can leave anytime.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq">
+    <div class="container">
+      <div class="faq-header">
+        <span class="mono">// FAQ</span>
+        <h2 class="heading">Common questions</h2>
+        <p class="subtext">Everything most people ask before starting a project. If yours isn't here, just get in touch.</p>
+      </div>
+      <div class="faq-list">
+        <div class="faq-item">
+          <h3 class="faq-question">
+            <button type="button" class="faq-trigger" id="faq-q1" aria-expanded="false" aria-controls="faq-a1">
+              <span>How much does a website cost in Liverpool?</span>
+              <span class="faq-icon" aria-hidden="true"></span>
+            </button>
+          </h3>
+          <div class="faq-answer" id="faq-a1" role="region" aria-labelledby="faq-q1">
+            <div class="faq-answer-inner">
+              <p>Most small business websites in Liverpool fall between £350 and £3,500. A simple one-page site starts at £350 with me; a full multi-page business site starts at £1,200. Agencies typically charge £2,000–£5,000+ for similar work because they have office overheads and account managers. Below £1,000 elsewhere you're usually getting a template with your logo dropped on top. I keep prices lower by working solo — no middlemen, no markup.</p>
+            </div>
+          </div>
+        </div>
+        <div class="faq-item">
+          <h3 class="faq-question">
+            <button type="button" class="faq-trigger" id="faq-q2" aria-expanded="false" aria-controls="faq-a2">
+              <span>How long does a website take to build?</span>
+              <span class="faq-icon" aria-hidden="true"></span>
+            </button>
+          </h3>
+          <div class="faq-answer" id="faq-a2" role="region" aria-labelledby="faq-q2">
+            <div class="faq-answer-inner">
+              <p>A one-page site is usually live in about a week from the point I have your content and images. A full business website takes 2–4 weeks depending on how many pages, whether e-commerce or booking is involved, and how quickly you can get feedback back to me. I'll always give you a realistic timeline before we start — no vague "sometime next month" promises.</p>
+            </div>
+          </div>
+        </div>
+        <div class="faq-item">
+          <h3 class="faq-question">
+            <button type="button" class="faq-trigger" id="faq-q3" aria-expanded="false" aria-controls="faq-a3">
+              <span>Is there an ongoing cost after the site is built?</span>
+              <span class="faq-icon" aria-hidden="true"></span>
+            </button>
+          </h3>
+          <div class="faq-answer" id="faq-a3" role="region" aria-labelledby="faq-q3">
+            <div class="faq-answer-inner">
+              <p>Only if you want one. The site itself is a one-off cost — you own it outright and can host it wherever you like. I offer an optional Care Plan from £35/month that covers hosting, security updates, small content edits and priority support, but it's genuinely optional and you can leave anytime.</p>
+            </div>
+          </div>
+        </div>
+        <div class="faq-item">
+          <h3 class="faq-question">
+            <button type="button" class="faq-trigger" id="faq-q4" aria-expanded="false" aria-controls="faq-a4">
+              <span>Why work with a freelancer instead of an agency?</span>
+              <span class="faq-icon" aria-hidden="true"></span>
+            </button>
+          </h3>
+          <div class="faq-answer" id="faq-a4" role="region" aria-labelledby="faq-q4">
+            <div class="faq-answer-inner">
+              <p>Speed, price, and single point of contact. With an agency you're paying for account managers, project coordinators and office space before any design happens. With me you get a senior developer working directly on your site — the same person who quotes, designs, builds and answers your emails. I've done 15+ years of enterprise agency work; I know exactly what corners agencies cut and which ones actually matter.</p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
